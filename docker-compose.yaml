@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    image: vue-nginx-docker:latest
+    container_name: vue-nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
