@@ -7,6 +7,7 @@ import Features from './components/Features.vue'
 import HowItWorks from './components/HowItWorks.vue'
 import FAQ from './components/FAQ.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import Page from './components/Page.vue'
 
 const dark = ref(true)
 function toggleTheme() { dark.value = !dark.value; document.documentElement.dataset.theme = dark.value ? 'dark' : 'light' }
@@ -14,12 +15,12 @@ function toggleTheme() { dark.value = !dark.value; document.documentElement.data
 
 <template>
     <div class="page">
-        <NavBar :dark="dark" @toggle="toggleTheme" />
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <FAQ />
-        <SiteFooter />
+        <!-- <NavBar :dark="dark" @toggle="toggleTheme" /> -->
+        <!-- <Hero /> -->
+        <!-- <Features /> -->
+        <!-- <HowItWorks /> -->
+        <!-- <FAQ /> -->
+        <Page />
     </div>
 </template>
 
