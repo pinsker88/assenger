@@ -1,0 +1,1 @@
+docker exec vue-nginx nginx -t
