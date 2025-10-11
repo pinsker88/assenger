@@ -1,0 +1,1 @@
+docker exec -it vue-nginx nginx -T | sed -n '1,200p'

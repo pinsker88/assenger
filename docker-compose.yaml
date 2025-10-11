@@ -13,6 +13,12 @@ services:
     volumes:
       - certbot-www:/var/www/certbot:ro
       - letsencrypt:/etc/letsencrypt:ro
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s        # run every 30 seconds
+      timeout: 5s          # wait max 5s for a response
+      retries: 3           # mark unhealthy after 3 consecutive failures
+      start_period: 10s    # give it time to boot before first check
 
   certbot:
     image: certbot/certbot:latest
