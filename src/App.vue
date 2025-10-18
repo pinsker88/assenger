@@ -43,11 +43,9 @@ function toggleTheme() { dark.value = !dark.value; document.documentElement.data
 html,
 #app {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
-    overflow: hidden;
     height: 100%;
     margin: 0;
     background: var(--bg);
