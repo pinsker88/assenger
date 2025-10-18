@@ -1,12 +1,16 @@
 <template>
-  <section class="heart-wrapper">
+  <section class="heart-wrapper no-select">
     <div class="heart-shell">
-      <img src="/logo.svg" alt="Heart" class="heart" />
+      <img src="/logo.svg" alt="Heart" class="heart"/>
     </div>
   </section>
 </template>
 
 <style scoped>
+.no-select {
+  user-select: none;      /* Disables text/image selection */
+  -webkit-user-drag: none; /* Prevents image dragging */
+}
 /* Center the heart */
 .heart-wrapper {
   display: flex;
@@ -23,7 +27,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  /* This controls the base heart size responsively */
+  
   width: 15vw;
   max-width: 200px;
   min-width: 100px;
@@ -75,7 +79,7 @@
   0% {
     transform: scale(1);      /* start at heart size */
     opacity: 0.55;
-    border-width: 2px;
+    border-width: 10px;
   }
   40% {
     opacity: 0.35;
@@ -84,7 +88,7 @@
     opacity: 0.18;
   }
   100% {
-    transform: scale(3.2);    /* how far the wave travels */
+    transform: scale(5);    /* how far the wave travels */
     opacity: 0;
     border-width: 1px;        /* subtle thinning as it fades */
   }
