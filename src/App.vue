@@ -15,11 +15,6 @@ function toggleTheme() { dark.value = !dark.value; document.documentElement.data
 
 <template>
     <div class="page">
-        <!-- <NavBar :dark="dark" @toggle="toggleTheme" /> -->
-        <!-- <Hero /> -->
-        <!-- <Features /> -->
-        <!-- <HowItWorks /> -->
-        <!-- <FAQ /> -->
         <Page />
     </div>
 </template>
@@ -46,12 +41,12 @@ function toggleTheme() { dark.value = !dark.value; document.documentElement.data
 }
 
 html,
-body,
 #app {
     height: 100%;
 }
 
 body {
+    height: 100%;
     margin: 0;
     background: var(--bg);
     color: var(--fg);
@@ -59,82 +54,11 @@ body {
 }
 
 .page {
+    height: 100%;
     background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(92, 160, 255, 0.25), transparent 60%),
+        radial-gradient(1200px 800px at 20% -10%, rgba(92, 160, 255, 0.25), transparent 60%),
         radial-gradient(900px 500px at 100% 0%, rgba(90, 255, 200, 0.18), transparent 60%),
-        var(--bg);
+        rgb(28, 10, 10);
 }
 
-section {
-    padding: 64px 20px;
-}
-
-.container {
-    max-width: 1120px;
-    margin: 0 auto;
-}
-
-.card {
-    background: var(--glass);
-    border: 1px solid var(--stroke);
-    border-radius: 20px;
-    backdrop-filter: saturate(140%) blur(10px);
-}
-
-h1,
-h2,
-h3 {
-    margin: 0 0 12px
-}
-
-.muted {
-    color: var(--muted);
-}
-
-.btn {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 18px;
-    border-radius: 14px;
-    border: 1px solid var(--stroke);
-    background: linear-gradient(180deg, var(--brand), #4d86ff);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform .08s ease, filter .2s ease;
-}
-
-.btn:hover {
-    filter: brightness(1.05);
-}
-
-.btn:active {
-    transform: translateY(1px);
-}
-
-.tag {
-    font-size: 12px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: var(--glass);
-    border: 1px solid var(--stroke);
-}
-
-.grid {
-    display: grid;
-    gap: 20px;
-}
-
-@media (min-width: 900px) {
-    .grid-2 {
-        grid-template-columns: 1.2fr 1fr;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 </style>
