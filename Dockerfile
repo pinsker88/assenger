@@ -4,12 +4,12 @@ WORKDIR /app
 
 
 # Install deps first (better caching)
-COPY package.json package-lock.json* ./
+COPY ./webapp/package.json ./webapp/package-lock.json* ./
 RUN npm ci || npm i
 
 
 # Copy source
-COPY . .
+COPY ./webapp .
 
 
 # Build for production
@@ -21,7 +21,7 @@ FROM nginx:1.27-alpine
 
 
 # Nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./webapp/nginx.conf /etc/nginx/conf.d/default.conf
 
 
 # Static site
