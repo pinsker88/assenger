@@ -69,9 +69,14 @@ const remoteSignal = ref("");  // JSON you paste in
 
 const rtcConfig = {
   iceServers: [
-    // Works on LANs. For internet/NAT traversal, add a TURN server here.
-    { urls: "stun:stun.l.google.com:19302" },
+    // // Works on LANs. For internet/NAT traversal, add a TURN server here.
+    // { urls: "stun:stun.l.google.com:19302" },
+    { urls: "turn:192.168.100.24:3478?transport=udp", username: "testuser", credential: "testpass" },
+    { urls: "turn:192.168.100.24:3478?transport=tcp", username: "testuser", credential: "testpass" },
+    { urls: "turn:assenger.co:3478?transport=tcp", username: "testuser", credential: "testpass" },
+    { urls: "turn:assenger.co:3478?transport=udp", username: "testuser", credential: "testpass" },
   ],
+  iceTransportPolicy: "relay"
 };
 
 const startLocal = async () => {

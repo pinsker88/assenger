@@ -30,6 +30,20 @@ services:
     entrypoint: /bin/sh
     command: -c "sleep infinity"
 
+  coturn:
+    image: coturn/coturn
+    container_name: coturn
+    restart: unless-stopped
+    volumes:
+      - ./coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+    ports:
+      - "3478:3478"
+      - "3478:3478/udp"
+      - "5349:5349"
+      - "5766:5766"
+      - "5349:5349/udp"
+      - "50000-50050:50000-50050/udp"
+
 volumes:
   certbot-www:
   letsencrypt:
