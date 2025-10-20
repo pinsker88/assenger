@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!--
+    This Maven configuration defines a minimal Spring Boot application. It pulls in
+    the WebSocket and Web starter dependencies and uses a parent-managed
+    dependency set based on the chosen Spring Boot version. Keeping the
+    dependency set tight helps ensure reproducible builds and keeps the
+    application lightweight. The project is configured to use Java 17, which
+    aligns with the LTS release currently recommended for Spring Boot 3.x.
+  -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>signal-server</artifactId>
+  <version>0.0.1</version>
+
+  <!--
+    Inherit from the Spring Boot starter parent. This sets sensible default
+    values for the build (such as source/target compatibility) and ensures
+    that the Spring Boot Maven plugin knows how to repackage our artifact
+    into an executable JAR with a proper main class. Without declaring a
+    parent, the repackage goal may not run automatically, resulting in
+    missing manifest entries.
+  -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <!--
+      Specify the Spring Boot parent version explicitly. Using a property
+      placeholder here causes Maven to attempt to resolve `${spring-boot.version}`
+      before the property is defined, leading to a "non-resolvable parent POM"
+      error. Hardcoding the version avoids this problem. If you later update
+      Spring Boot, change this version accordingly.
+    -->
+    <version>3.3.3</version>
+    <relativePath/>
+  </parent>
+
+  <properties>
+    <java.version>17</java.version>
+    <!-- Pin the Spring Boot version to ensure compatibility and repeatability. -->
+    <spring-boot.version>3.3.3</spring-boot.version>
+  </properties>
+
+  <!-- Import the Spring Boot dependency management BOM to align dependency versions. -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Spring Boot WebSocket starter provides WebSocket infrastructure support. -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-websocket</artifactId>
+    </dependency>
+    <!-- Spring Boot Web starter provides basic HTTP and embedded Tomcat runtime. -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Integrate the Spring Boot Maven plugin to produce an executable JAR. -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <!-- Explicitly configure the repackage goal so the JAR is repackaged with
+             a runnable entry point. This resolves "no main manifest" errors
+             when running with java -jar. -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
