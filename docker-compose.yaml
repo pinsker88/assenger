@@ -30,6 +30,20 @@ services:
     entrypoint: /bin/sh
     command: -c "sleep infinity"
 
+  # Spring Boot signaling server used for WebRTC offer/answer/ICE exchange. It
+  # builds from the source in the signal-server directory and exposes port
+  # 8080 internally. The web service proxies WebSocket traffic to this
+  # container via nginx using an upstream location block (see nginx.conf). It
+  # uses the same restart policy as the web container.
+  signal:
+    build:
+      context: signal-server
+      dockerfile: Dockerfile
+    container_name: signal-server
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
 volumes:
   certbot-www:
   letsencrypt:
